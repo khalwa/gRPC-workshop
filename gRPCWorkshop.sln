@@ -5,6 +5,11 @@ VisualStudioVersion = 17.6.33829.357
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ManagementService", "ManagementService\ManagementService.csproj", "{7137A9AC-EB52-49BC-A0B7-132DEA54157E}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Protos", "Protos", "{D3511CA1-8DBB-4E64-A238-18A29308200E}"
+	ProjectSection(SolutionItems) = preProject
+		Protos\hello.proto = Protos\hello.proto
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

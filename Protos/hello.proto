@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+import "google/protobuf/empty.proto";
+option csharp_namespace = "ManagementGrpc";
+
+package management;
+
+service Hello {
+	rpc SayHello (google.protobuf.Empty) returns (HelloResponse);
+}
+
+message HelloResponse {
+	string response = 1;
+}

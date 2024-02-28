@@ -7,10 +7,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ManagementService", "Manage
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Protos", "Protos", "{D3511CA1-8DBB-4E64-A238-18A29308200E}"
 	ProjectSection(SolutionItems) = preProject
+		Protos\burger.proto = Protos\burger.proto
 		Protos\hello.proto = Protos\hello.proto
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Client", "Client\Client.csproj", "{9AD612DA-2224-4FA1-B0D9-E285162A6162}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Client", "Client\Client.csproj", "{9AD612DA-2224-4FA1-B0D9-E285162A6162}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

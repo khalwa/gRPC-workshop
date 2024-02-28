@@ -13,7 +13,8 @@ namespace ManagementService.Services
             {
                 OrderId = 1,
                 Cost = 25.23f,
-                Date = Timestamp.FromDateTime(DateTime.UtcNow)
+                Date = Timestamp.FromDateTime(DateTime.UtcNow),
+                Message = message
             });
         }
     }

@@ -9,6 +9,7 @@ package burger;
 service Burger {
 	rpc PlaceOrder(PlaceOrderMessage) returns (OrderPlacedMessage);
 	rpc GetReadyOrders(google.protobuf.Empty) returns (stream OrderReadyMessage);
+	rpc SmartCooking(stream SmartCookMessage) returns (stream SmartCookResponseMessage);
 }
 
 message PlaceOrderMessage {
@@ -29,4 +30,12 @@ enum OrderType {
 
 message OrderReadyMessage {
 	int32 order_id = 1;
+}
+
+message SmartCookMessage {
+	bool flip = 1;
+}
+
+message SmartCookResponseMessage {
+	string message = 1;
 }

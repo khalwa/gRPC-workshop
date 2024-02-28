@@ -2,6 +2,8 @@
 using Google.Protobuf.WellKnownTypes;
 using Grpc.Core;
 using ManagementService.Models;
+using System.Timers;
+using Timer = System.Timers.Timer;
 
 namespace ManagementService.Services
 {
@@ -39,6 +41,60 @@ namespace ManagementService.Services
                     OrderId = order.Id
                 });
                 await Task.Delay(TimeSpan.FromSeconds(2));
+            }
+        }
+
+        public override async Task SmartCooking(IAsyncStreamReader<SmartCookMessage> requestStream, IServerStreamWriter<SmartCookResponseMessage> responseStream, ServerCallContext context)
+        {
+            var counter = 0;
+
+            _ = Task.Run(async () =>
+            {
+                while (true)
+                {
+                    if (counter >= 3)
+                    {
+                        await responseStream.WriteAsync(new SmartCookResponseMessage
+                        {
+                            Message = "Burger is burned now."
+                        });
+                        break;
+                    } 
+                    else if (counter == 2)
+                    {
+                        await responseStream.WriteAsync(new SmartCookResponseMessage
+                        {
+                            Message = "Burger needs flipping. NOW!"
+                        });
+                    }
+                    else if (counter == 1)
+                    {
+                        await responseStream.WriteAsync(new SmartCookResponseMessage
+                        {
+                            Message = "Burger starts to fry."
+                        });
+                    }
+                    
+                    counter++;
+                    await Task.Delay(1000);
+                }
+            });
+
+            await foreach (var message in requestStream.ReadAllAsync())
+            {
+                if(message.Flip)
+                {
+                    counter = 0;
+                    await responseStream.WriteAsync(new SmartCookResponseMessage
+                    {
+                        Message = "Burger was flipped."
+                    });
+                } else {
+                    await responseStream.WriteAsync(new SmartCookResponseMessage
+                    {
+                        Message = "Burger was not flipped."
+                    });
+                }
             }
         }
     }

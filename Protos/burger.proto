@@ -1,12 +1,14 @@
 syntax = "proto3";
 option csharp_namespace = "BurgerGrpc";
 
+import "google/protobuf/empty.proto";
 import "google/protobuf/timestamp.proto";
 
 package burger;
 
 service Burger {
 	rpc PlaceOrder(PlaceOrderMessage) returns (OrderPlacedMessage);
+	rpc GetReadyOrders(google.protobuf.Empty) returns (stream OrderReadyMessage);
 }
 
 message PlaceOrderMessage {
@@ -23,4 +25,8 @@ message OrderPlacedMessage {
 enum OrderType {
 	BURGER = 0;
 	POCKET = 1;
+}
+
+message OrderReadyMessage {
+	int32 order_id = 1;
 }
